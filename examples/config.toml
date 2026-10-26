@@ -1,0 +1,11 @@
+[stream_downloader]
+output_dir = "downloads"
+temp_dir = ".stream-downloader-temp"
+profile = "maximum"
+retries = 5
+fragment_retries = 10
+wait_interval = 60
+wait_timeout = 1800
+js_runtime = "deno"
+# ffmpeg_location = "C:/ffmpeg/bin"
+

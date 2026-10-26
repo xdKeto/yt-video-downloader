@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+downloads/
+.stream-downloader-temp/
+*.part
+*.ytdl
+*.json
+!.stream-downloader.example.json
+local*.toml
+config.local.toml
+
