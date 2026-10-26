@@ -7,14 +7,57 @@ Version 1 intentionally does not record active livestreams. It uses [yt-dlp](htt
 ## Install on Windows
 
 1. Install Python 3.11 or newer.
-2. Install [ffmpeg](https://ffmpeg.org/) and put both `ffmpeg.exe` and `ffprobe.exe` on `PATH` (or pass `--ffmpeg-location`).
-3. Install the recommended JavaScript runtime, [Deno](https://deno.com/), and put `deno.exe` on `PATH`.
-4. From this folder, run:
+2. Install FFmpeg (both `ffmpeg.exe` and `ffprobe.exe` are required).
+3. Install the recommended JavaScript runtime, Deno.
+4. From this folder, install the project and run the diagnostics:
 
    ```powershell
    py -m pip install -e .
    stream-downloader doctor
    ```
+
+### Install FFmpeg manually
+
+If `winget` is unavailable, download the **release essentials** ZIP from the
+[Gyan FFmpeg builds](https://www.gyan.dev/ffmpeg/builds/). Extract it and place
+the `bin` directory at a stable location such as:
+
+```text
+C:\ffmpeg\bin\ffmpeg.exe
+C:\ffmpeg\bin\ffprobe.exe
+```
+
+Add `C:\ffmpeg\bin` to your Windows user `PATH`. You can also keep FFmpeg in
+another directory and pass that directory to commands with
+`--ffmpeg-location C:\path\to\ffmpeg\bin`.
+
+### Install Deno manually
+
+Download the Windows installer from the
+[latest Deno release](https://github.com/denoland/deno/releases/latest) and
+install it. The default per-user location is usually:
+
+```text
+C:\Users\<your-user>\.deno\bin
+```
+
+Add that directory to your Windows user `PATH` if the installer did not do so.
+Close and reopen PowerShell after changing `PATH`, then verify all required
+executables:
+
+```powershell
+ffmpeg -version
+ffprobe -version
+deno --version
+```
+
+Finally, run:
+
+```powershell
+stream-downloader doctor
+```
+
+The `ffmpeg`, `ffprobe`, and `JavaScript runtime` checks must report `OK`.
 
 The `doctor` command reports missing dependencies and the next setup action. The current yt-dlp YouTube extractor also needs its EJS support; `yt-dlp[default]` installs the supported dependency set.
 
